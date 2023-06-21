@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NETApi.Core\NETApi.Core.csproj" />
+    <ProjectReference Include="..\NETApi.Data\NETApi.Data.csproj" />
+  </ItemGroup>
+
 </Project>

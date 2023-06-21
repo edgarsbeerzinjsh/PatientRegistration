@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using NETApi.Core.IServices;
+using NETApi.Core.Models;
 using NETApi.Data;
+using NETApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +16,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<NETApiDBContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("PatientRegistration")));
 builder.Services.AddTransient<INETApiDbContext, NETApiDBContext>();
+//builder.Services.AddScoped<IDbService<Doctor>, DbService<Doctor>>();
+builder.Services.AddScoped<IDbService<Patient>, DbService<Patient>>();
+builder.Services.AddScoped<IDoctorService, DoctorService>();
 
 var app = builder.Build();
 

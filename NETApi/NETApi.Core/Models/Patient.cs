@@ -4,6 +4,6 @@
     {
         public string Address { get; set; }
         public DateTime BirthDate { get; set; }
-        public List<Doctor> Doctors { get; set; } = new List<Doctor>();
+        public List<DoctorPatient> DoctorPatient { get; set; } = new List<DoctorPatient>();
     }
 }

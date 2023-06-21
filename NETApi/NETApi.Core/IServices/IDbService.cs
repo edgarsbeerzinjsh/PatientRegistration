@@ -2,13 +2,13 @@
 
 namespace NETApi.Core.IServices
 {
-    public interface IDbService
+    public interface IDbService<T> where T : Entity
     {
-        T Create<T>(T entity) where T : Entity;
-        T Read<T>(T entity) where T : Entity;
-        T Update<T>(T entity) where T : Entity;
-        void Remove<T>(T entity) where T : Entity;
-        List<T> GetAll<T>() where T : Entity;
-        void RemoveAll<T>() where T : Entity;
+        T Create(T entity);
+        T Read(int id);
+        T Update(T entity);
+        void Remove(T entity);
+        List<T> GetAll();
+        void RemoveAll();
     }
 }
