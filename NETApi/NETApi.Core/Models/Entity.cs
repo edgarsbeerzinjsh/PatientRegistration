@@ -7,5 +7,6 @@
         public string Surname { get; set; }
         public string Telephone { get; set; }
         public string EMail { get; set; }
+        public List<DoctorPatient> DoctorPatient { get; set; } = new List<DoctorPatient>();
     }
 }

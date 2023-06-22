@@ -9,13 +9,5 @@ namespace NETApi.Services
         public DoctorService(INETApiDbContext context): base(context)
         {
         }
-
-        public List<Patient> GetAllPatients(int id)
-        {
-            return _dbContext.DoctorsPatients
-                .Where(dp => dp.DoctorId == id)
-                .Select(dp => _dbContext.Patients.FirstOrDefault(p => p.Id == dp.PatientId))
-                .ToList();
-        }
     }
 }

@@ -46,6 +46,7 @@ namespace NETApi.Services
         public void RemoveAll()
         {
             _dbContext.Set<T>().RemoveRange(_dbContext.Set<T>());
+            _dbContext.SaveChanges();
         }
     }
 }

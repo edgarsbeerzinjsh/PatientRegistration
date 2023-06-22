@@ -1,58 +1,87 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using NETApi.Core.IServices;
 using NETApi.Core.Models;
+using NETApi.Models;
 
 namespace NETApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class PatientRegistrationController : ControllerBase
     {
         private readonly IDoctorService _dbDoctor;
-        private readonly IDbService<Patient> _dbPatient;
+        private readonly IPatientService _dbPatient;
+        private readonly IMapper _mapper;
 
-        public PatientRegistrationController(IDoctorService dbDoctor, IDbService<Patient> dbPatient)
+        public PatientRegistrationController(IDoctorService dbDoctor, IPatientService dbPatient, IMapper mapper)
         {
             _dbDoctor = dbDoctor;
             _dbPatient = dbPatient;
+            _mapper = mapper;
         }
 
-        //[HttpPut]
-        //[Route("createDoctors")]
-        //public IActionResult AddPatientToDoctor(Doctor doctor)
-        //{
-        //    _dbDoctor.Create(doctor);
+        [HttpPut]
+        [Route("createDoctors")]
+        public IActionResult AddDoctor(Doctor doctor)
+        {
+            _dbDoctor.Create(doctor);
 
-        //    return Ok("Doctor added");
-        //}
+            return Ok("Doctor added");
+        }
+
+        [HttpDelete]
+        [Route("DeleteDoctors")]
+        public IActionResult DeleteAllDoctors()
+        {
+            _dbDoctor.RemoveAll();
+
+            return Ok("Doctors deleted");
+        }
+
+        [HttpPut]
+        [Route("createPatient")]
+        public IActionResult AddPatient(Patient patient)
+        {
+            _dbPatient.Create(patient);
+
+            return Ok("Patient added");
+        }
+
+        [HttpDelete]
+        [Route("DeletePatients")]
+        public IActionResult DeleteAllPatients()
+        {
+            _dbPatient.RemoveAll();
+
+            return Ok("Patients deleted");
+        }
 
         [HttpPut]
         [Route("{doctorId}")]
         public IActionResult AddPatientToDoctor(Patient patient, int doctorId)
         {
-            var newPatient = _dbPatient.Create(patient);
-            var doctor = _dbDoctor.Read(doctorId);
+            var newPatient = _dbPatient.AddPatientToDoctor(patient, doctorId);
 
-            var newDoctorPatient = new DoctorPatient(doctorId, newPatient.Id);
-            
-
-            doctor.DoctorPatients.Add(newDoctorPatient);
-            newPatient.DoctorPatient.Add(newDoctorPatient);
-
-            _dbDoctor.Update(doctor);
-            _dbPatient.Update(newPatient);
-            //_dbDoctor.Create(doctor);
-
-            return Ok("Patient added");
+            return Ok(newPatient);
         }
 
         [HttpGet]
         [Route("{doctorId}")]
         public IActionResult GetDoctorsPatients(int doctorId)
         {
-            var doctorPatients = _dbDoctor.GetAllPatients(doctorId);
+            var patients = _dbPatient.GetAllPatientsByDoctor(doctorId);
 
-            return Ok(doctorPatients);
+            return Ok(_mapper.Map<List<PatientDto>>(patients));
+        }
+
+        [HttpGet]
+        [Route("allPatients")]
+        public IActionResult GetAllPatients()
+        {
+            var patients = _dbPatient.GetAllPatientsFullList();
+
+            return Ok(_mapper.Map<List<PatientDto>>(patients));
         }
     }
 }
