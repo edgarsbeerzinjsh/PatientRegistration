@@ -59,11 +59,35 @@ namespace NETApi.Controllers
 
         [HttpPut]
         [Route("{doctorId}")]
-        public IActionResult AddPatientToDoctor(Patient patient, int doctorId)
+        public IActionResult AddPatientToDoctor(PatientDto patientDto, int doctorId)
         {
-            var newPatient = _dbPatient.AddPatientToDoctor(patient, doctorId);
+            try
+            {
+                var patient = _mapper.Map<Patient>(patientDto);
+                _dbPatient.AddPatientToDoctor(patient, doctorId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
-            return Ok(newPatient);
+            return Ok("Doctor added to patient");
+        }
+
+        [HttpPut]
+        [Route("{doctorId}/{patientId}")]
+        public IActionResult AddExistingPatientToDoctor(int patientId, int doctorId)
+        {
+            try
+            {
+                _dbPatient.AddExistingPatientToDoctor(patientId, doctorId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok("Doctor added to patient");
         }
 
         [HttpGet]

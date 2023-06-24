@@ -16,7 +16,6 @@ namespace NETApi
                             opt.MapFrom(pd => pd.DoctorPatient
                                 .Select(dp => dp.DoctorId)));
                 cfg.CreateMap<PatientDto, Patient>()
-                    .ForMember(p => p.Id, opt => opt.Ignore())
                     .ForMember(p => p.DoctorPatient, opt => opt.Ignore());
             });
 
