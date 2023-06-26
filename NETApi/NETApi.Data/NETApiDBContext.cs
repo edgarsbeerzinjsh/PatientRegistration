@@ -3,9 +3,9 @@ using NETApi.Core.Models;
 
 namespace NETApi.Data
 {
-    public class NETApiDBContext : DbContext, INETApiDbContext
+    public class NetApiDbContext : DbContext, INetApiDbContext
     {
-        public NETApiDBContext(DbContextOptions options): base(options)
+        public NetApiDbContext(DbContextOptions options): base(options)
         {
         }
 

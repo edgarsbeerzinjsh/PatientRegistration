@@ -11,8 +11,8 @@ using NETApi.Data;
 namespace NETApi.Data.Migrations
 {
     [DbContext(typeof(NetApiDbContext))]
-    [Migration("20230622070957_DoctorPatientNullable")]
-    partial class DoctorPatientNullable
+    [Migration("20230624132946_DoctorAndPatientPropsUpdate")]
+    partial class DoctorAndPatientPropsUpdate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,10 +27,6 @@ namespace NETApi.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("EMail")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("License")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -81,10 +77,6 @@ namespace NETApi.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("TEXT");

@@ -2,7 +2,6 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using NETApi;
 using NETApi.Core.IServices;
-using NETApi.Core.Models;
 using NETApi.Data;
 using NETApi.Services;
 
@@ -15,12 +14,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<NETApiDBContext>(options =>
+builder.Services.AddDbContext<NetApiDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("PatientRegistration")));
-builder.Services.AddTransient<INETApiDbContext, NETApiDBContext>();
-//builder.Services.AddScoped<IDbService<Doctor>, DbService<Doctor>>();
+builder.Services.AddTransient<INetApiDbContext, NetApiDbContext>();
 builder.Services.AddScoped<IPatientService, PatientService>();
 builder.Services.AddScoped<IDoctorService, DoctorService>();
+builder.Services.AddScoped<IPatientsByDoctorService, PatientsByDoctorService>();
 
 builder.Services.AddSingleton<IMapper>(AutoMapperConfig.CreateMapper());
 

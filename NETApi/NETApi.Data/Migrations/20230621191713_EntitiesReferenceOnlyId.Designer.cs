@@ -10,7 +10,7 @@ using NETApi.Data;
 
 namespace NETApi.Data.Migrations
 {
-    [DbContext(typeof(NETApiDBContext))]
+    [DbContext(typeof(NetApiDbContext))]
     [Migration("20230621191713_EntitiesReferenceOnlyId")]
     partial class EntitiesReferenceOnlyId
     {

@@ -9,7 +9,7 @@ using NETApi.Data;
 
 namespace NETApi.Data.Migrations
 {
-    [DbContext(typeof(NETApiDBContext))]
+    [DbContext(typeof(NetApiDbContext))]
     partial class NETApiDBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -24,10 +24,6 @@ namespace NETApi.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("EMail")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("License")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -78,10 +74,6 @@ namespace NETApi.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("TEXT");

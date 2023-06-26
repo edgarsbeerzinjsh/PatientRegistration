@@ -4,7 +4,7 @@ using NETApi.Core.Models;
 
 namespace NETApi.Data
 {
-    public interface INETApiDbContext
+    public interface INetApiDbContext
     {
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Patient> Patients { get; set; }

@@ -6,8 +6,8 @@ namespace NETApi.Services
 {
     public class DbService<T> : IDbService<T> where T : Entity
     {
-        protected readonly INETApiDbContext _dbContext;
-        public DbService(INETApiDbContext dbContext)
+        protected readonly INetApiDbContext _dbContext;
+        public DbService(INetApiDbContext dbContext)
         {
             _dbContext = dbContext;
         }

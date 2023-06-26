@@ -12,12 +12,18 @@ namespace NETApi.Controllers
     {
         private readonly IDoctorService _dbDoctor;
         private readonly IPatientService _dbPatient;
+        private readonly IPatientsByDoctorService _patientsByDoctorService;
         private readonly IMapper _mapper;
 
-        public PatientRegistrationController(IDoctorService dbDoctor, IPatientService dbPatient, IMapper mapper)
+        public PatientRegistrationController(
+            IDoctorService dbDoctor, 
+            IPatientService dbPatient,
+            IPatientsByDoctorService patientsByDoctorService,
+            IMapper mapper)
         {
             _dbDoctor = dbDoctor;
             _dbPatient = dbPatient;
+            _patientsByDoctorService = patientsByDoctorService;
             _mapper = mapper;
         }
 
@@ -64,14 +70,14 @@ namespace NETApi.Controllers
             try
             {
                 var patient = _mapper.Map<Patient>(patientDto);
-                _dbPatient.AddPatientToDoctor(patient, doctorId);
+                _patientsByDoctorService.AddPatientToDoctor(patient, doctorId);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
 
-            return Ok("Doctor added to patient");
+            return Ok("Patient added to doctor");
         }
 
         [HttpPut]
@@ -80,21 +86,30 @@ namespace NETApi.Controllers
         {
             try
             {
-                _dbPatient.AddExistingPatientToDoctor(patientId, doctorId);
+                _patientsByDoctorService.AddExistingPatientToDoctor(patientId, doctorId);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return Conflict(ex.Message);
             }
 
-            return Ok("Doctor added to patient");
+            return Ok("Patient added to doctor");
         }
 
         [HttpGet]
         [Route("{doctorId}")]
         public IActionResult GetDoctorsPatients(int doctorId)
         {
-            var patients = _dbPatient.GetAllPatientsByDoctor(doctorId);
+            var patients = new List<Patient>();
+
+            try
+            {
+                patients = _patientsByDoctorService.GetAllPatientsByDoctor(doctorId);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
 
             return Ok(_mapper.Map<List<PatientDto>>(patients));
         }

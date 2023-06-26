@@ -10,7 +10,7 @@ using NETApi.Data;
 
 namespace NETApi.Data.Migrations
 {
-    [DbContext(typeof(NETApiDBContext))]
+    [DbContext(typeof(NetApiDbContext))]
     [Migration("20230620132116_Init")]
     partial class Init
     {
