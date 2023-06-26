@@ -18,7 +18,6 @@ namespace NETApi.Data.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Specialization = table.Column<string>(type: "TEXT", nullable: false),
-                    License = table.Column<string>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Surname = table.Column<string>(type: "TEXT", nullable: false),
                     Telephone = table.Column<string>(type: "TEXT", nullable: false),
@@ -35,7 +34,6 @@ namespace NETApi.Data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Address = table.Column<string>(type: "TEXT", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Surname = table.Column<string>(type: "TEXT", nullable: false),
@@ -48,40 +46,47 @@ namespace NETApi.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DoctorPatient",
+                name: "DoctorsPatients",
                 columns: table => new
                 {
-                    DoctorsId = table.Column<int>(type: "INTEGER", nullable: false),
-                    PatientsId = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    DoctorId = table.Column<int>(type: "INTEGER", nullable: false),
+                    PatientId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DoctorPatient", x => new { x.DoctorsId, x.PatientsId });
+                    table.PrimaryKey("PK_DoctorsPatients", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_DoctorPatient_Doctors_DoctorsId",
-                        column: x => x.DoctorsId,
+                        name: "FK_DoctorsPatients_Doctors_DoctorId",
+                        column: x => x.DoctorId,
                         principalTable: "Doctors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DoctorPatient_Patients_PatientsId",
-                        column: x => x.PatientsId,
+                        name: "FK_DoctorsPatients_Patients_PatientId",
+                        column: x => x.PatientId,
                         principalTable: "Patients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DoctorPatient_PatientsId",
-                table: "DoctorPatient",
-                column: "PatientsId");
+                name: "IX_DoctorsPatients_DoctorId",
+                table: "DoctorsPatients",
+                column: "DoctorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DoctorsPatients_PatientId",
+                table: "DoctorsPatients",
+                column: "PatientId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "DoctorPatient");
+                name: "DoctorsPatients");
 
             migrationBuilder.DropTable(
                 name: "Doctors");

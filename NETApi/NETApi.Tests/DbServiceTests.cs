@@ -10,14 +10,12 @@ namespace NETApi.Tests
     {
         private NetApiDbContext _context;
         private DbService<Doctor> _dbDoctor;
-        private DbService<Patient> _dbPatient;
 
         [SetUp]
         public void Setup()
         {
             TestDbSetup();
             _dbDoctor = new DbService<Doctor>(_context);
-            _dbPatient = new DbService<Patient>(_context);
         }
 
         [TearDown]
@@ -59,6 +57,47 @@ namespace NETApi.Tests
             newNameForDoctor.Name.Should().Be("Jimmy");
         }
 
+        [Test]
+        public void RemoveDoctor_DefaultDoctor_NoDoctorsInDb()
+        {
+            _dbDoctor.Create(defaultDoctor);
+            var doctorInDb = _dbDoctor.Read(defaultDoctor.Id);
+
+            doctorInDb.Should().NotBeNull();
+
+            _dbDoctor.Remove(defaultDoctor);
+            doctorInDb = _dbDoctor.Read(defaultDoctor.Id);
+
+            doctorInDb.Should().BeNull();
+        }
+
+        [Test]
+        public void GetAllDoctors_Add3Doctors_ReturnedDoctorCount3()
+        {
+            _dbDoctor.Create(defaultDoctor);
+            defaultDoctor.Id = 2;
+            _dbDoctor.Create(defaultDoctor);
+            defaultDoctor.Id = 3;
+            _dbDoctor.Create(defaultDoctor);
+
+            var doctorList = _dbDoctor.GetAll();
+
+            doctorList.Count.Should().Be(3);
+        }
+
+        [Test]
+        public void RemoveAllDoctors_Add3Doctors_AfterRemoveAllNoDoctorsInDb()
+        {
+            _dbDoctor.Create(defaultDoctor);
+            defaultDoctor.Id = 2;
+            _dbDoctor.Create(defaultDoctor);
+            _context.Doctors.Count().Should().Be(2);
+
+            _dbDoctor.RemoveAll();
+
+            _context.Doctors.Should().BeEmpty();
+        }
+
         private void TestDbSetup()
         {
             var options = new DbContextOptionsBuilder<NetApiDbContext>()
@@ -82,21 +121,6 @@ namespace NETApi.Tests
             {
                 new DoctorPatient(1, 11),
                 new DoctorPatient(1, 12)
-            }
-        };
-
-        private Patient defaultPatient = new Patient
-        {
-            Id = 11,
-            Name = "Anny",
-            Surname = "Antynen",
-            EMail = "Anny@webpage.com",
-            Telephone = "+99998765432",
-            BirthDate = new DateTime(2000, 1, 1),
-            DoctorPatient =
-            {
-                new DoctorPatient(1, 11),
-                new DoctorPatient(2, 11)
             }
         };
     }

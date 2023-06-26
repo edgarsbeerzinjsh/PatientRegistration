@@ -10,7 +10,7 @@ using NETApi.Data;
 namespace NETApi.Data.Migrations
 {
     [DbContext(typeof(NetApiDbContext))]
-    partial class NETApiDBContextModelSnapshot : ModelSnapshot
+    partial class NetApiDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
