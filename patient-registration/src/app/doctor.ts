@@ -4,6 +4,6 @@ export interface Doctor {
     surname: string;
     telephone: string;
     email: string;
-    birthDate: Date;
-    doctorsId: number[];
+    specialization: string;
+    patientsId?: number[];
 }

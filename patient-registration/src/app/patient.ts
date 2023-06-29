@@ -5,5 +5,5 @@ export interface Patient {
     telephone: string;
     email: string;
     birthDate: Date;
-    doctorsId: number[];
+    doctorsId?: number[];
 }

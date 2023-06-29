@@ -1,0 +1,18 @@
+<select class="doctors-patients" [(ngModel)]="selectedDoctor" (ngModelChange)="PatientsForDoctor()">
+    <option value="All">All doctors</option>
+    <option value="doctor1">1</option>
+</select>
+<ul class="patient-list">
+    <li class="patient-list-header">
+        <th class="header-id">ID</th>
+        <th class="header-name">Name</th>
+        <th class="header-doctors">Doctors ID</th>
+        <th class="header-add-doctor">Add doctor</th>
+    </li>
+    <li *ngFor="let patient of patients">
+        <td class="patient-id">{{patient.id}}</td>
+        <td class="patient-name">{{patient.name}}</td>
+        <td class="patient-doctors">{{patient.doctorsId}}</td>
+    </li>
+</ul>
+
