@@ -26,7 +26,7 @@ namespace NETApi.Tests
             _doctorService = new DoctorService(_context);
             _patientService = new PatientService(_context);
 
-            _patientsByDoctorService = new PatientsByDoctorService(_context, _doctorService, _patientService);
+            _patientsByDoctorService = new PatientsByDoctorService(_doctorService, _patientService);
             
             _dbDoctor.Create(defaultDoctor);
             _dbPatient.Create(defaultPatient);

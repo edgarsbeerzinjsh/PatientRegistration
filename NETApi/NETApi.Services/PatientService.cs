@@ -16,13 +16,16 @@ namespace NETApi.Services
             return _dbContext.Patients.Any(p => p.Id == patientId);
         }
 
-        public List<Patient> GetAllPatientsFullList()
+        public Patient GetKnownPatient(Patient patient)
         {
-            var patients = _dbContext.Patients
+            return _dbContext.Patients
                 .Include(p => p.DoctorPatient)
-                .ToList();
-
-            return patients;
+                .FirstOrDefault(p =>
+                    p.Name == patient.Name &&
+                    p.Surname == patient.Surname &&
+                    p.BirthDate == patient.BirthDate &&
+                    p.EMail == patient.EMail &&
+                    p.Telephone == patient.Telephone);
         }
     }
 }

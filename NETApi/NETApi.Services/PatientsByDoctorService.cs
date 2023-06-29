@@ -1,20 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
-using NETApi.Core.Exceptions;
+﻿using NETApi.Core.Exceptions;
 using NETApi.Core.IServices;
 using NETApi.Core.Models;
-using NETApi.Data;
 
 namespace NETApi.Services
 {
-    public class PatientsByDoctorService :  DbService<Patient>, IPatientsByDoctorService
+    public class PatientsByDoctorService :  IPatientsByDoctorService
     {
         protected readonly IDoctorService _doctorService;
         protected readonly IPatientService _patientService;
 
-        public PatientsByDoctorService(
-            INetApiDbContext context,
-            IDoctorService doctorService,
-            IPatientService patientService) : base(context)
+        public PatientsByDoctorService(IDoctorService doctorService, IPatientService patientService)
         {
             _doctorService = doctorService;
             _patientService = patientService;
@@ -29,7 +24,7 @@ namespace NETApi.Services
                 throw new PatientWithThisIdDoesNotExistsException();
             }
 
-            var existingPatient = GetKnownPatient(patientId);
+            var existingPatient = _patientService.Read(patientId);
 
             return UpdatePatientWithNewDoctor(existingPatient, doctorId);
         }
@@ -38,10 +33,10 @@ namespace NETApi.Services
         {
             IsDoctorIdValid(doctorId);
 
-            var newPatient = GetKnownPatient(patient);
+            var newPatient = _patientService.GetKnownPatient(patient);
             if (newPatient == null)
             {
-                newPatient = Create(patient);
+                newPatient = _patientService.Create(patient);
             }
 
             return UpdatePatientWithNewDoctor(newPatient, doctorId);
@@ -51,8 +46,7 @@ namespace NETApi.Services
         {
             IsDoctorIdValid(id);
 
-            var patients = _dbContext.Patients
-                .Include(p => p.DoctorPatient)
+            var patients = _patientService.GetAll()
                 .Where(p => p.DoctorPatient.Any(dp => dp.DoctorId == id))
                 .ToList();
 
@@ -74,25 +68,6 @@ namespace NETApi.Services
                 dp.PatientId == doctorPatient.PatientId);
         }
 
-        private Patient GetKnownPatient(Patient patient)
-        {
-            return _dbContext.Patients
-                .Include(p => p.DoctorPatient)
-                .FirstOrDefault(p =>
-                    p.Name == patient.Name &&
-                    p.Surname == patient.Surname &&
-                    p.BirthDate == patient.BirthDate &&
-                    p.EMail == patient.EMail &&
-                    p.Telephone == patient.Telephone);
-        }
-
-        private Patient GetKnownPatient(int patientId)
-        {
-            return _dbContext.Patients
-                .Include(p => p.DoctorPatient)
-                .FirstOrDefault(p => p.Id == patientId);
-        }
-
         private Patient UpdatePatientWithNewDoctor(Patient patient, int doctorId)
         {
             var newDoctorPatient = new DoctorPatient(doctorId, patient.Id);
@@ -103,7 +78,7 @@ namespace NETApi.Services
 
             patient.DoctorPatient.Add(newDoctorPatient);
 
-            Update(patient);
+            _patientService.Update(patient);
 
             return patient;
         }

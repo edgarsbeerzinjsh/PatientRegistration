@@ -4,7 +4,7 @@ namespace NETApi.Core.IServices
 {
     public interface IPatientService : IDbService<Patient>
     {
-        List<Patient> GetAllPatientsFullList();
+        Patient GetKnownPatient(Patient patient);
         bool IsPatientIdInDb(int patientId);
     }
 }

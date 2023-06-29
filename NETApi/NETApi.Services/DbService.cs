@@ -1,4 +1,5 @@
-﻿using NETApi.Core.IServices;
+﻿using Microsoft.EntityFrameworkCore;
+using NETApi.Core.IServices;
 using NETApi.Core.Models;
 using NETApi.Data;
 
@@ -22,7 +23,9 @@ namespace NETApi.Services
 
         public T Read(int id)
         {
-            return _dbContext.Set<T>().SingleOrDefault(e => e.Id == id);
+            return _dbContext.Set<T>()
+                .Include(dp => dp.DoctorPatient)
+                .SingleOrDefault(e => e.Id == id);
         }
 
         public T Update(T entity)
@@ -41,7 +44,9 @@ namespace NETApi.Services
 
         public List<T> GetAll()
         {
-            return _dbContext.Set<T>().ToList();
+            return _dbContext.Set<T>()
+                .Include(dp => dp.DoctorPatient)
+                .ToList();
         }
         public void RemoveAll()
         {

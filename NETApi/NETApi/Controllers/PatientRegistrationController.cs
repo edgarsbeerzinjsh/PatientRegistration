@@ -27,44 +27,91 @@ namespace NETApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpPut]
-        [Route("createDoctors")]
-        public IActionResult AddDoctor(Doctor doctor)
+        [HttpPost]
+        [Route("createDoctor")]
+        public IActionResult AddDoctor(DoctorDto doctor)
         {
-            _dbDoctor.Create(doctor);
+            var newDoctor = _dbDoctor.Create(_mapper.Map<Doctor>(doctor));
 
-            return Ok("Doctor added");
+            return Created("", newDoctor);
         }
 
         [HttpDelete]
-        [Route("DeleteDoctors")]
+        [Route("deleteDoctor/{id}")]
+        public IActionResult DeleteDoctorById(int id)
+        {
+            var existingDoctor = _dbDoctor.Read(id);
+            if (existingDoctor == null)
+            {
+                return BadRequest("Id does not match any doctor");
+            }
+
+            _dbDoctor.Remove(existingDoctor);
+
+            return Ok("Doctor deleted");
+        }
+
+        [HttpDelete]
+        [Route("deleteAllDoctors")]
         public IActionResult DeleteAllDoctors()
         {
             _dbDoctor.RemoveAll();
 
-            return Ok("Doctors deleted");
+            return Ok("All doctors deleted");
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("createPatient")]
-        public IActionResult AddPatient(Patient patient)
+        public IActionResult AddPatient(PatientDto patient)
         {
-            _dbPatient.Create(patient);
+            var newPatient = _dbPatient.Create(_mapper.Map<Patient>(patient));
 
-            return Ok("Patient added");
+            return Created("", newPatient);
         }
 
         [HttpDelete]
-        [Route("DeletePatients")]
+        [Route("deleteAllPatients")]
         public IActionResult DeleteAllPatients()
         {
             _dbPatient.RemoveAll();
 
-            return Ok("Patients deleted");
+            return Ok("All patients deleted");
+        }
+
+        [HttpDelete]
+        [Route("deletePatient")]
+        public IActionResult DeletePatient(PatientDto patientDto)
+        {
+            var patient = _mapper.Map<Patient>(patientDto);
+
+            var existingPatient = _dbPatient.GetKnownPatient(patient);
+            if (existingPatient == null)
+            {
+                return BadRequest("Matching patient not found");
+            }
+
+            _dbPatient.Remove(existingPatient);
+
+            return Ok("Patient deleted");
+        }
+
+        [HttpDelete]
+        [Route("deletePatient/{id}")]
+        public IActionResult DeletePatientById(int id)
+        {
+            var existingPatient = _dbPatient.Read(id);
+            if (existingPatient == null)
+            {
+                return BadRequest("Id does not match any patient");
+            }
+
+            _dbPatient.Remove(existingPatient);
+
+            return Ok("Patient deleted");
         }
 
         [HttpPut]
-        [Route("{doctorId}")]
+        [Route("addPatient/{doctorId}")]
         public IActionResult AddPatientToDoctor(PatientDto patientDto, int doctorId)
         {
             try
@@ -81,7 +128,7 @@ namespace NETApi.Controllers
         }
 
         [HttpPut]
-        [Route("{doctorId}/{patientId}")]
+        [Route("addPatient/{doctorId}/{patientId}")]
         public IActionResult AddExistingPatientToDoctor(int patientId, int doctorId)
         {
             try
@@ -97,10 +144,10 @@ namespace NETApi.Controllers
         }
 
         [HttpGet]
-        [Route("{doctorId}")]
+        [Route("patients/{doctorId}")]
         public IActionResult GetDoctorsPatients(int doctorId)
         {
-            var patients = new List<Patient>();
+            List<Patient> patients;
 
             try
             {
@@ -115,10 +162,10 @@ namespace NETApi.Controllers
         }
 
         [HttpGet]
-        [Route("allPatients")]
+        [Route("patients/all")]
         public IActionResult GetAllPatients()
         {
-            var patients = _dbPatient.GetAllPatientsFullList();
+            var patients = _dbPatient.GetAll();
 
             return Ok(_mapper.Map<List<PatientDto>>(patients));
         }

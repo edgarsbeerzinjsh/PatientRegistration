@@ -17,6 +17,13 @@ namespace NETApi
                                 .Select(dp => dp.DoctorId)));
                 cfg.CreateMap<PatientDto, Patient>()
                     .ForMember(p => p.DoctorPatient, opt => opt.Ignore());
+                cfg.CreateMap<Doctor, DoctorDto>()
+                    .ForMember(d => d.PatientsId,
+                        opt =>
+                            opt.MapFrom(pd => pd.DoctorPatient
+                                .Select(dp => dp.PatientId)));
+                cfg.CreateMap<DoctorDto, Doctor>()
+                    .ForMember(d => d.DoctorPatient, opt => opt.Ignore());
             });
 
             config.AssertConfigurationIsValid();

@@ -47,16 +47,16 @@ namespace NETApi.Tests
             isPatientInDb.Should().BeTrue();
         }
 
-        [Test]
-        public void GetAllPatientsFullList_AddOneMorePatient_ReturnedListCountMustBe2()
-        {
-            _dbPatient.Create(defaultNewPatient);
+        //[Test]
+        //public void GetAllPatientsFullList_AddOneMorePatient_ReturnedListCountMustBe2()
+        //{
+        //    _dbPatient.Create(defaultNewPatient);
 
-            var patientList = _patientService.GetAllPatientsFullList();
+        //    var patientList = _patientService.GetAllPatientsFullList();
 
-            patientList.Count.Should().Be(2);
-            patientList[0].DoctorPatient.Should().NotBeNull();
-        }
+        //    patientList.Count.Should().Be(2);
+        //    patientList[0].DoctorPatient.Should().NotBeNull();
+        //}
 
         private void TestDbSetup()
         {
