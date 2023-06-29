@@ -111,7 +111,7 @@ namespace NETApi.Controllers
         }
 
         [HttpPut]
-        [Route("addPatient/{doctorId}")]
+        [Route("patients/addToDoctor/{doctorId}")]
         public IActionResult AddPatientToDoctor(PatientDto patientDto, int doctorId)
         {
             try
@@ -128,7 +128,7 @@ namespace NETApi.Controllers
         }
 
         [HttpPut]
-        [Route("addPatient/{doctorId}/{patientId}")]
+        [Route("patients/addToDoctor/{doctorId}/{patientId}")]
         public IActionResult AddExistingPatientToDoctor(int patientId, int doctorId)
         {
             try
@@ -144,7 +144,7 @@ namespace NETApi.Controllers
         }
 
         [HttpGet]
-        [Route("patients/{doctorId}")]
+        [Route("doctorsPatients/{doctorId}")]
         public IActionResult GetDoctorsPatients(int doctorId)
         {
             List<Patient> patients;
@@ -168,6 +168,15 @@ namespace NETApi.Controllers
             var patients = _dbPatient.GetAll();
 
             return Ok(_mapper.Map<List<PatientDto>>(patients));
+        }
+
+        [HttpGet]
+        [Route("doctors/all")]
+        public IActionResult GetAllDoctors()
+        {
+            var doctors = _dbDoctor.GetAll();
+
+            return Ok(_mapper.Map<List<DoctorDto>>(doctors));
         }
     }
 }
