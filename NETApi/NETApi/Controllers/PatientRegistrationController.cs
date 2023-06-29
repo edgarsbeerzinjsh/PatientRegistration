@@ -6,7 +6,7 @@ using NETApi.Models;
 
 namespace NETApi.Controllers
 {
-    //[Route("[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class PatientRegistrationController : ControllerBase
     {
