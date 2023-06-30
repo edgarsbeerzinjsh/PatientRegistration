@@ -1,0 +1,78 @@
+<div class="container">
+    <h1>Add Patient</h1>
+    <form #patientForm="ngForm">        
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name"
+                placeholder="Patients name"
+                required
+                [(ngModel)]="model.name" name="name"
+                #name="ngModel">
+            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                <div *ngIf="name.errors?.['required']">Name is required</div>
+            </div>
+        </div>
+            
+        <div class="form-group">
+            <label for="surname">Surname</label>
+            <input type="text" class="form-control" id="surname"
+                placeholder="Patients surname"
+                required
+                [(ngModel)]="model.surname" name="surname"
+                #surname="ngModel">
+            <div [hidden]="surname.valid || surname.pristine" class="alert alert-danger">
+                <div *ngIf="surname.errors?.['required']">Surname is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="telephone">Telephone</label>
+            <input type="tel" class="form-control" id="telephone"
+                placeholder="Telephone number" pattern="\+?[0-9]+"
+                required
+                [(ngModel)]="model.telephone" name="telephone"
+                #telephone="ngModel">
+            <div [hidden]="telephone.valid || telephone.pristine" class="alert alert-danger">
+                <div *ngIf="telephone.errors?.['required']">Telephone is required</div>
+                <div *ngIf="telephone.errors?.['pattern']">Telephone should consist of numbers</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email"
+                placeholder="Patients e-mail address"
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+                required
+                [(ngModel)]="model.email" name="email"
+                #email="ngModel">
+            <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                <div *ngIf="email.errors?.['required']">Email is required</div>
+                <div *ngIf="email.errors?.['pattern']">Invalid email format</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="birthDate">Birth date</label>
+            <input type="date" class="form-control" id="birthDate"
+                placeholder="Patients date of birth"
+                pattern="^(?:(?!9999-99-99|9999\/99\/99|9999).)*$"
+                [max]="getTodayDate()"
+                required
+                [(ngModel)]="model.birthDate" name="birthDate"
+                #birthDate="ngModel">
+            <div [hidden]="birthDate.valid || birthDate.pristine" class="alert alert-danger">
+                <div *ngIf="birthDate.errors?.['required']">Date of birth is required</div>
+                <div *ngIf="birthDate.errors?.['pattern']">Invalid date of birth</div>
+                <div *ngIf="birthDate.errors?.['max']">Date of birth cannot be in the future</div>
+            </div>
+        </div>
+    <button type="button" 
+        class="btn btn-default"
+        [disabled]="!patientForm.form.valid"
+        (click)="newPatient(); patientForm.reset()">
+        Add Patient
+    </button>
+    </form>
+</div>
+        
