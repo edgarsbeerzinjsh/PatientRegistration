@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Add Patient</h1>
+    <h2>Add Patient</h2>
     <form #patientForm="ngForm">        
         <div class="form-group">
             <label for="name">Name</label>
@@ -8,7 +8,7 @@
                 required
                 [(ngModel)]="model.name" name="name"
                 #name="ngModel">
-            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+            <div [hidden]="name.valid || name.pristine" class="alert">
                 <div *ngIf="name.errors?.['required']">Name is required</div>
             </div>
         </div>
@@ -20,7 +20,7 @@
                 required
                 [(ngModel)]="model.surname" name="surname"
                 #surname="ngModel">
-            <div [hidden]="surname.valid || surname.pristine" class="alert alert-danger">
+            <div [hidden]="surname.valid || surname.pristine" class="alert">
                 <div *ngIf="surname.errors?.['required']">Surname is required</div>
             </div>
         </div>
@@ -32,7 +32,7 @@
                 required
                 [(ngModel)]="model.telephone" name="telephone"
                 #telephone="ngModel">
-            <div [hidden]="telephone.valid || telephone.pristine" class="alert alert-danger">
+            <div [hidden]="telephone.valid || telephone.pristine" class="alert">
                 <div *ngIf="telephone.errors?.['required']">Telephone is required</div>
                 <div *ngIf="telephone.errors?.['pattern']">Telephone should consist of numbers</div>
             </div>
@@ -46,7 +46,7 @@
                 required
                 [(ngModel)]="model.email" name="email"
                 #email="ngModel">
-            <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+            <div [hidden]="email.valid || email.pristine" class="alert">
                 <div *ngIf="email.errors?.['required']">Email is required</div>
                 <div *ngIf="email.errors?.['pattern']">Invalid email format</div>
             </div>
@@ -60,15 +60,16 @@
                 [max]="getTodayDate()"
                 required
                 [(ngModel)]="model.birthDate" name="birthDate"
-                #birthDate="ngModel">
-            <div [hidden]="birthDate.valid || birthDate.pristine" class="alert alert-danger">
+                #birthDate="ngModel"
+                (input)="checkFutureDate(birthDate)">
+            <div [hidden]="birthDate.valid || birthDate.pristine" class="alert">
                 <div *ngIf="birthDate.errors?.['required']">Date of birth is required</div>
                 <div *ngIf="birthDate.errors?.['pattern']">Invalid date of birth</div>
-                <div *ngIf="birthDate.errors?.['max']">Date of birth cannot be in the future</div>
+                <div *ngIf="birthDate.errors?.['futureDate']">Date of birth cannot be in the future</div>
             </div>
         </div>
     <button type="button" 
-        class="btn btn-default"
+        class="create-patient"
         [disabled]="!patientForm.form.valid"
         (click)="newPatient(); patientForm.reset()">
         Add Patient

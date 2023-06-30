@@ -68,6 +68,15 @@ export class ApiService {
       )
   }
 
+  deleteDoctor(doctorId: number): Observable<any> {
+    const url = `${this.apiUrl}/deleteDoctor/${doctorId}`
+    return this.http.delete(url, { responseType: 'text' })
+      .pipe(
+        tap(_ => console.log(`doctor id=${doctorId} deleted`)),
+        catchError(this.handleError)
+      );
+  }
+
   deletePatient(patientId: number): Observable<any> {
     const url = `${this.apiUrl}/deletePatient/${patientId}`
     return this.http.delete(url, { responseType: 'text' })

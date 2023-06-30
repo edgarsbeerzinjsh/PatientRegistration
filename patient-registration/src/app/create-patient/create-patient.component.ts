@@ -25,9 +25,14 @@ export class CreatePatientComponent {
 
   getTodayDate(): string {
     const today = new Date();
-    const year = today.getFullYear();
-    const month = ('0' + (today.getMonth() + 1)).slice(-2);
-    const day = ('0' + (today.getDate())).slice(-2);
-    return `${year}-${month}-${day}`;
+    return today.toISOString().split('T')[0];
+  }
+
+  checkFutureDate(birthDate: any) {
+    if (new Date(birthDate.value) > new Date()) {
+      birthDate.control.setErrors({ futureDate: true});
+    } else {
+      birthDate.control.setErrors(null);
+    }
   }
 }

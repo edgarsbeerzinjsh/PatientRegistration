@@ -1,0 +1,66 @@
+.doctors-patients {
+    min-width: 200px;
+    width: fit-content;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+table.patient-list {
+    width: fit-content;
+    margin-top: 1rem;
+    border: 1px black solid;
+    border-collapse: collapse;
+}
+
+table.patient-list th,
+table.patient-list td {
+    border: 1px black solid;
+    padding: 0.5rem;
+    font-size: 12px;
+}
+
+table.patient-list th {
+    background-color: #aaa;
+}
+
+table.patient-list .header-delete-patient {
+    max-width: 40px;
+}
+
+table.patient-list .patient-doctors span {
+    display: block;
+}
+
+table.patient-list .patient-delete,
+table.patient-list .patient-addDoctor {
+    text-align: center;
+}
+
+table.patient-list .patient-addDoctor {
+    width: fit-content;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+table.patient-list .patient-delete button {
+    padding: 0 4px;
+    margin: 0;
+    border: none;
+    font-size: 1rem;
+    background-color: red;
+    cursor: pointer;
+    transition: 0.5s all ease-in-out;
+}
+
+table.patient-list .patient-delete button:hover {
+    color: red;
+    background-color: #aaa;
+}
+
+table.patient-list td:last-child {
+    border-right: none;
+}
+  
+table.patient-list tbody tr:last-child td {
+    border-bottom: none;
+}

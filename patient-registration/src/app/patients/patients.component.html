@@ -1,49 +1,58 @@
-<select class="doctors-patients" 
-    [(ngModel)]="selectedDoctor" 
-    (ngModelChange)="PatientsForDoctor()">
-    <option value="AllPatients">All patients</option>
-    <option *ngFor="let doctor of doctors" value={{doctor.id}}>{{ getDoctorNameById(doctor.id!) }}</option>
-</select>
-<ul class="patient-list">
-    <li class="patient-list-header">
-        <th class="header-id">ID</th>
-        <th class="header-name">Name</th>
-        <th class="header-surname">Surname</th>
-        <th class="header-telephone">Telephone</th>
-        <th class="header-email">Email</th>
-        <th class="header-birthdate">Birthdate</th>
-        <th class="header-doctors">Doctors</th>
-        <th class="header-add-doctor">Add doctor</th>
-        <th class="header-delete-patient">Delete patient</th>
-    </li>
-    <li *ngFor="let patient of patients">
-        <td class="patient-id">{{patient.id}}</td>
-        <td class="patient-name">{{patient.name}}</td>
-        <td class="patient-surname">{{patient.surname}}</td>
-        <td class="patient-telephone">{{patient.telephone}}</td>
-        <td class="patient-email">{{patient.email}}</td>
-        <td class="patient-birthdate">{{patient.birthDate | date:'yyyy-MM-dd'}}</td>
-        <td class="patient-doctors">
-            <span *ngFor="let doctorId of patient.doctorsId">
-                {{ getDoctorNameById(doctorId) }}
-            </span>
-        </td>
-        <td class="patient-addDoctor">
-            <select class="patient-addDoctor" 
-                [disabled]="!hasAvaiableDoctors(patient)"
-                [(ngModel)]="addDoctor"
-                (ngModelChange)="addPatientToDoctor(patient.id!)">
-                <option *ngIf="hasAvaiableDoctors(patient)" value="addDoctor">Add doctor</option>
-                <option *ngFor="let doctor of getAvailableDoctors(patient)" value={{doctor.id}}>{{ getDoctorNameById(doctor.id) }}</option>
-            </select>
-        </td>
-        <td class="patient-delete">
-            <button 
-                type="button" 
-                class="delete" 
-                title="delete patient" 
-                (click)="deletePatient(patient.id!)">
-                x</button>
-        </td>
-    </li>
-</ul>
+<h2>Patient list</h2>
+<div class="filter-patients">
+    <span>Select doctor: </span>
+    <select class="doctors-patients" 
+        [(ngModel)]="selectedDoctor" 
+        (ngModelChange)="PatientsForDoctor()">
+        <option value="AllPatients">All patients</option>
+        <option *ngFor="let doctor of doctors" value={{doctor.id}}>{{ getDoctorNameById(doctor.id!) }}</option>
+    </select>
+</div>
+<table class="patient-list">
+    <thead>
+        <tr class="patient-list-header">
+            <th class="header-id">ID</th>
+            <th class="header-name">Name</th>
+            <th class="header-surname">Surname</th>
+            <th class="header-telephone">Telephone</th>
+            <th class="header-email">Email</th>
+            <th class="header-birthdate">Birthdate</th>
+            <th class="header-doctors">Doctors</th>
+            <th class="header-add-doctor">Add doctor</th>
+            <th class="header-delete-patient">Delete patient</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let patient of patients">
+            <td class="patient-id">{{patient.id}}</td>
+            <td class="patient-name">{{patient.name}}</td>
+            <td class="patient-surname">{{patient.surname}}</td>
+            <td class="patient-telephone">{{patient.telephone}}</td>
+            <td class="patient-email">{{patient.email}}</td>
+            <td class="patient-birthdate">{{patient.birthDate | date:'yyyy-MM-dd'}}</td>
+            <td class="patient-doctors">
+                <span *ngFor="let doctorId of patient.doctorsId">
+                    {{ getDoctorNameById(doctorId) }}
+                </span>
+            </td>
+            <td class="patient-addDoctor">
+                <select class="patient-addDoctor" 
+                    *ngIf="hasAvaiableDoctors(patient)"
+                    [(ngModel)]="addDoctor"
+                    (ngModelChange)="addPatientToDoctor(patient.id!)">
+                    <option *ngIf="hasAvaiableDoctors(patient)" value="addDoctor">Add doctor</option>
+                    <option *ngFor="let doctor of getAvailableDoctors(patient)" value={{doctor.id}}>{{ getDoctorNameById(doctor.id) }}</option>
+                </select>
+                <p *ngIf="!hasAvaiableDoctors(patient)">All doctors added</p>
+            </td>
+            <td class="patient-delete">
+                <button 
+                    type="button" 
+                    class="delete" 
+                    title="delete patient" 
+                    (click)="deletePatient(patient.id!)">
+                    X</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

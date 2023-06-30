@@ -1,0 +1,50 @@
+form {
+    max-width: 400px;
+    width: fit-content;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #369;
+}
+
+input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px black solid;
+    border-radius: 4px;
+}
+
+.alert {
+    margin-top: 0.5rem;
+    color: red;
+    font-size: 0.875rem;
+}
+
+button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #aaa;
+    color: black;
+    transition: 0.5s all ease-in-out;
+}
+
+button:hover {
+    background-color: #369;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

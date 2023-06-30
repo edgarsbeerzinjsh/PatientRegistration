@@ -1,0 +1,48 @@
+table.doctor-list {
+    width: fit-content;
+    margin-top: 1rem;
+    border: 1px black solid;
+    border-collapse: collapse;
+}
+
+table.doctor-list th,
+table.doctor-list td {
+    border: 1px black solid;
+    padding: 0.5rem;
+    font-size: 12px;
+}
+
+table.doctor-list th {
+    background-color: #aaa;
+}
+
+table.doctor-list .header-delete-doctor {
+    max-width: 40px;
+}
+
+table.doctor-list .doctor-delete {
+    text-align: center;
+}
+
+table.doctor-list .doctor-delete button {
+    padding: 0 4px;
+    margin: 0;
+    border: none;
+    font-size: 1rem;
+    background-color: red;
+    cursor: pointer;
+    transition: 0.5s all ease-in-out;
+}
+
+table.doctor-list .doctor-delete button:hover {
+    color: red;
+    background-color: #aaa;
+}
+
+table.doctor-list td:last-child {
+    border-right: none;
+}
+  
+table.doctor-list tbody tr:last-child td {
+    border-bottom: none;
+}

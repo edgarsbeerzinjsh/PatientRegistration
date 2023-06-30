@@ -1,0 +1,25 @@
+nav {
+    display: flex;
+    width: fit-content;
+    border: 1px black solid;
+    border-right: none;
+    margin-bottom: 1rem;
+}
+a {
+    white-space: nowrap;
+    text-decoration: none;
+    color: #369;
+    padding: 1rem;
+    border-right: 1px black solid;
+    transition: 0.5s all ease-in-out;
+}
+
+a:hover {
+    background-color: #aaa;
+    color: black;
+}
+
+a.active {
+    background-color: #aaa;
+    color: darkblue;
+}
