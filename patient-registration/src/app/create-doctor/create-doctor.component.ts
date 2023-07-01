@@ -12,7 +12,7 @@ export class CreateDoctorComponent {
     name: "",
     surname: "",
     telephone: "",
-    email: "",
+    eMail: "",
     specialization: ""
   }
 
@@ -25,7 +25,7 @@ export class CreateDoctorComponent {
         this.model.name = "";
         this.model.surname = "";
         this.model.telephone = "";
-        this.model.email = "";
+        this.model.eMail = "";
         this.model.specialization = "";
       });
   }

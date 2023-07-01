@@ -36,7 +36,7 @@ describe('CreatePatientComponent', () => {
       name: 'John',
       surname: 'Doe',
       telephone: '123456789',
-      email: 'john@example.com',
+      eMail: 'john@example.com',
       birthDate: new Date(),
     };
 
@@ -54,7 +54,7 @@ describe('CreatePatientComponent', () => {
       name: 'John',
       surname: 'Doe',
       telephone: '123456789',
-      email: 'john@example.com',
+      eMail: 'john@example.com',
       birthDate: new Date(),
     };
 
@@ -68,7 +68,7 @@ describe('CreatePatientComponent', () => {
       name: '',
       surname: '',
       telephone: '',
-      email: '',
+      eMail: '',
       birthDate: new Date(),
     });
   });

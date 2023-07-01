@@ -39,16 +39,16 @@
         </div>
 
         <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email"
+            <label for="eMail">eMail</label>
+            <input type="eMail" class="form-control" id="eMail"
                 placeholder="Doctors e-mail address"
                 pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
                 required
-                [(ngModel)]="model.email" name="email"
-                #email="ngModel">
-            <div [hidden]="email.valid || email.pristine" class="alert">
-                <div *ngIf="email.errors?.['required']">Email is required</div>
-                <div *ngIf="email.errors?.['pattern']">Invalid email format</div>
+                [(ngModel)]="model.eMail" name="eMail"
+                #eMail="ngModel">
+            <div [hidden]="eMail.valid || eMail.pristine" class="alert">
+                <div *ngIf="eMail.errors?.['required']">eMail is required</div>
+                <div *ngIf="eMail.errors?.['pattern']">Invalid eMail format</div>
             </div>
         </div>
 

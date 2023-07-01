@@ -38,7 +38,7 @@ describe('PatientsComponent', () => {
         name: 'John',
         surname: 'Doe',
         telephone: '123456789',
-        email: 'john@example.com',
+        eMail: 'john@example.com',
         birthDate: new Date('1990-01-01'),
         doctorsId: [1, 2]
       },
@@ -47,7 +47,7 @@ describe('PatientsComponent', () => {
         name: 'Jane',
         surname: 'Smith',
         telephone: '987654321',
-        email: 'jane@example.com',
+        eMail: 'jane@example.com',
         birthDate: new Date('1995-02-02'),
         doctorsId: [1, 3]
       }
@@ -68,7 +68,7 @@ describe('PatientsComponent', () => {
         name: 'Dr. John',
         surname: 'Smith',
         telephone: '123456789',
-        email: 'john@example.com',
+        eMail: 'john@example.com',
         specialization: 'Cardiology'
       },
       {
@@ -76,7 +76,7 @@ describe('PatientsComponent', () => {
         name: 'Dr. Jane',
         surname: 'Doe',
         telephone: '987654321',
-        email: 'jane@example.com',
+        eMail: 'jane@example.com',
         specialization: 'Dermatology'
       }
     ];
@@ -97,7 +97,7 @@ describe('PatientsComponent', () => {
         name: 'John',
         surname: 'Doe',
         telephone: '123456789',
-        email: 'john@example.com',
+        eMail: 'john@example.com',
         birthDate: new Date('1990-01-01'),
         doctorsId: [1, 2]
       },
@@ -106,7 +106,7 @@ describe('PatientsComponent', () => {
         name: 'Jane',
         surname: 'Smith',
         telephone: '987654321',
-        email: 'jane@example.com',
+        eMail: 'jane@example.com',
         birthDate: new Date('1995-02-02'),
         doctorsId: [1, 3]
       }
@@ -143,7 +143,7 @@ describe('PatientsComponent', () => {
         name: 'John',
         surname: 'Doe',
         telephone: '123456789',
-        email: 'john@example.com',
+        eMail: 'john@example.com',
         birthDate: new Date('1990-01-01'),
         doctorsId: [1, 2]
       },
@@ -152,7 +152,7 @@ describe('PatientsComponent', () => {
         name: 'Jane',
         surname: 'Smith',
         telephone: '987654321',
-        email: 'jane@example.com',
+        eMail: 'jane@example.com',
         birthDate: new Date('1995-02-02'),
         doctorsId: [1, 3]
       }
@@ -177,7 +177,7 @@ describe('PatientsComponent', () => {
         name: 'Dr. John',
         surname: 'Smith',
         telephone: '123456789',
-        email: 'john@example.com',
+        eMail: 'john@example.com',
         specialization: 'Cardiology'
       },
       {
@@ -185,7 +185,7 @@ describe('PatientsComponent', () => {
         name: 'Dr. Jane',
         surname: 'Doe',
         telephone: '987654321',
-        email: 'jane@example.com',
+        eMail: 'jane@example.com',
         specialization: 'Dermatology'
       }
     ];
@@ -203,7 +203,7 @@ describe('PatientsComponent', () => {
       name: 'John',
       surname: 'Doe',
       telephone: '123456789',
-      email: 'john@example.com',
+      eMail: 'john@example.com',
       birthDate: new Date('1990-01-01'),
       doctorsId: [1, 2]
     };
@@ -214,7 +214,7 @@ describe('PatientsComponent', () => {
         name: 'Dr. John',
         surname: 'Smith',
         telephone: '123456789',
-        email: 'john@example.com',
+        eMail: 'john@example.com',
         specialization: 'Cardiology'
       },
       {
@@ -222,7 +222,7 @@ describe('PatientsComponent', () => {
         name: 'Dr. Jane',
         surname: 'Doe',
         telephone: '987654321',
-        email: 'jane@example.com',
+        eMail: 'jane@example.com',
         specialization: 'Dermatology'
       },
       {
@@ -230,7 +230,7 @@ describe('PatientsComponent', () => {
         name: 'Dr. Mark',
         surname: 'Johnson',
         telephone: '123456788',
-        email: 'mark@example.com',
+        eMail: 'mark@example.com',
         specialization: 'Orthopedics'
       }
     ];
@@ -249,7 +249,7 @@ describe('PatientsComponent', () => {
       name: 'John',
       surname: 'Doe',
       telephone: '123456789',
-      email: 'john@example.com',
+      eMail: 'john@example.com',
       birthDate: new Date('1990-01-01'),
       doctorsId: [1, 2]
     };
@@ -260,7 +260,7 @@ describe('PatientsComponent', () => {
         name: 'Dr. John',
         surname: 'Smith',
         telephone: '123456789',
-        email: 'john@example.com',
+        eMail: 'john@example.com',
         specialization: 'Cardiology'
       },
       {
@@ -268,7 +268,7 @@ describe('PatientsComponent', () => {
         name: 'Dr. Jane',
         surname: 'Doe',
         telephone: '987654321',
-        email: 'jane@example.com',
+        eMail: 'jane@example.com',
         specialization: 'Dermatology'
       },
       {
@@ -276,7 +276,7 @@ describe('PatientsComponent', () => {
         name: 'Dr. Mark',
         surname: 'Johnson',
         telephone: '123456788',
-        email: 'mark@example.com',
+        eMail: 'mark@example.com',
         specialization: 'Orthopedics'
       }
     ];
@@ -294,7 +294,7 @@ describe('PatientsComponent', () => {
       name: 'John',
       surname: 'Doe',
       telephone: '123456789',
-      email: 'john@example.com',
+      eMail: 'john@example.com',
       birthDate: new Date('1990-01-01'),
       doctorsId: [1, 2]
     };
@@ -305,7 +305,7 @@ describe('PatientsComponent', () => {
         name: 'Dr. John',
         surname: 'Smith',
         telephone: '123456789',
-        email: 'john@example.com',
+        eMail: 'john@example.com',
         specialization: 'Cardiology'
       },
       {
@@ -313,7 +313,7 @@ describe('PatientsComponent', () => {
         name: 'Dr. Jane',
         surname: 'Doe',
         telephone: '987654321',
-        email: 'jane@example.com',
+        eMail: 'jane@example.com',
         specialization: 'Dermatology'
       }
     ];

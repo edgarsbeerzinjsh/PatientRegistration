@@ -33,7 +33,7 @@ namespace NETApi.Controllers
         {
             var newDoctor = _dbDoctor.Create(_mapper.Map<Doctor>(doctor));
 
-            return Created("", newDoctor);
+            return Created("", _mapper.Map<DoctorDto>(newDoctor));
         }
 
         [HttpDelete]
@@ -66,7 +66,7 @@ namespace NETApi.Controllers
         {
             var newPatient = _dbPatient.Create(_mapper.Map<Patient>(patient));
 
-            return Created("", newPatient);
+            return Created("", _mapper.Map<PatientDto>(newPatient));
         }
 
         [HttpDelete]

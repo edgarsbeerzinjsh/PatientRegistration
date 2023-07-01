@@ -9,8 +9,8 @@ import { ApiService } from '../api.service';
   styleUrls: ['./patients.component.css']
 })
 export class PatientsComponent implements OnInit {
-  patients: Patient[] = []
-  doctors: Doctor[] = []
+  patients: Patient[] = [];
+  doctors: Doctor[] = [];
   selectedDoctor: string = "AllPatients";
   addDoctor: string = "addDoctor";
 
@@ -46,7 +46,7 @@ export class PatientsComponent implements OnInit {
   }
 
   addPatientToDoctor(patientId: number) {
-    var doctorId = parseInt(this.addDoctor)
+    const doctorId = parseInt(this.addDoctor)
     this.apiService.addPatientToDoctor(doctorId, patientId)
       .subscribe(() => {
         this.addDoctor = "addDoctor";

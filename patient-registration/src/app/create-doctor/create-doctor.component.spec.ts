@@ -36,7 +36,7 @@ describe('CreateDoctorComponent', () => {
       name: 'John',
       surname: 'Doe',
       telephone: '123456789',
-      email: 'john@example.com',
+      eMail: 'john@example.com',
       specialization: 'Cardiology'
     };
 
@@ -54,7 +54,7 @@ describe('CreateDoctorComponent', () => {
       name: 'John',
       surname: 'Doe',
       telephone: '123456789',
-      email: 'john@example.com',
+      eMail: 'john@example.com',
       specialization: 'Cardiology'
     };
 
@@ -68,7 +68,7 @@ describe('CreateDoctorComponent', () => {
       name: '',
       surname: '',
       telephone: '',
-      email: '',
+      eMail: '',
       specialization: ''
     });
   });

@@ -15,7 +15,7 @@
             <th class="header-name">Name</th>
             <th class="header-surname">Surname</th>
             <th class="header-telephone">Telephone</th>
-            <th class="header-email">Email</th>
+            <th class="header-eMail">eMail</th>
             <th class="header-birthdate">Birthdate</th>
             <th class="header-doctors">Doctors</th>
             <th class="header-add-doctor">Add doctor</th>
@@ -28,7 +28,7 @@
             <td class="patient-name">{{patient.name}}</td>
             <td class="patient-surname">{{patient.surname}}</td>
             <td class="patient-telephone">{{patient.telephone}}</td>
-            <td class="patient-email">{{patient.email}}</td>
+            <td class="patient-eMail">{{patient.eMail}}</td>
             <td class="patient-birthdate">{{patient.birthDate | date:'yyyy-MM-dd'}}</td>
             <td class="patient-doctors">
                 <span *ngFor="let doctorId of patient.doctorsId">

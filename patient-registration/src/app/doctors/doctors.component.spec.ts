@@ -35,7 +35,7 @@ describe('DoctorsComponent', () => {
         name: 'John',
         surname: 'Doe',
         telephone: '123456789',
-        email: 'john@example.com',
+        eMail: 'john@example.com',
         specialization: 'Cardiology',
       },
       {
@@ -43,7 +43,7 @@ describe('DoctorsComponent', () => {
         name: 'Jane',
         surname: 'Smith',
         telephone: '987654321',
-        email: 'jane@example.com',
+        eMail: 'jane@example.com',
         specialization: 'Dermatology',
       },
     ];
@@ -64,7 +64,7 @@ describe('DoctorsComponent', () => {
         name: 'John',
         surname: 'Doe',
         telephone: '123456789',
-        email: 'john@example.com',
+        eMail: 'john@example.com',
         specialization: 'Cardiology',
       },
       {
@@ -72,7 +72,7 @@ describe('DoctorsComponent', () => {
         name: 'Jane',
         surname: 'Smith',
         telephone: '987654321',
-        email: 'jane@example.com',
+        eMail: 'jane@example.com',
         specialization: 'Dermatology',
       },
     ];

@@ -56,7 +56,7 @@ export class ApiService {
       .pipe(
         tap((addedDoctor: any) => console.log(`created new doctor: ${JSON.stringify(addedDoctor)}`)),
         catchError(this.handleError)
-      )
+      );
   }
 
   createPatient(newPatient: Patient): Observable<Patient> {
@@ -65,7 +65,7 @@ export class ApiService {
       .pipe(
         tap((addedPatient: any) => console.log(`created new patient: ${JSON.stringify(addedPatient)}`)),
         catchError(this.handleError)
-      )
+      );
   }
 
   deleteDoctor(doctorId: number): Observable<any> {

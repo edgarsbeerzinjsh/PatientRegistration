@@ -32,7 +32,7 @@ describe('ApiService', () => {
         name: 'John',
         surname: 'Doe',
         telephone: '123456789',
-        email: 'john@example.com',
+        eMail: 'john@example.com',
         birthDate: new Date(),
         doctorsId: []
       },
@@ -55,7 +55,7 @@ describe('ApiService', () => {
         surname: 'Strange',
         specialization: 'Neurology',
         telephone: '123456789',
-        email: 'doctor@example.com'
+        eMail: 'doctor@example.com'
       },
       // Add more dummy doctors as needed
     ];
@@ -77,7 +77,7 @@ describe('ApiService', () => {
         name: 'John',
         surname: 'Doe',
         telephone: '123456789',
-        email: 'john@example.com',
+        eMail: 'john@example.com',
         birthDate: new Date(),
         doctorsId: [doctorId]
       },
@@ -112,7 +112,7 @@ describe('ApiService', () => {
       surname: 'Doe',
       specialization: 'Cardiology',
       telephone: '123456789',
-      email: 'john@example.com'
+      eMail: 'john@example.com'
     };
 
     service.createDoctor(newDoctor).subscribe((addedDoctor: Doctor) => {
@@ -130,7 +130,7 @@ describe('ApiService', () => {
       name: 'John',
       surname: 'Doe',
       telephone: '123456789',
-      email: 'john@example.com',
+      eMail: 'john@example.com',
       birthDate: new Date(),
       doctorsId: []
     };
