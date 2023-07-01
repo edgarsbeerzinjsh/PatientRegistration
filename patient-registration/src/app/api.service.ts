@@ -10,7 +10,7 @@ import { Patient } from './patient';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = environment.apiUrl;
+  apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -99,10 +99,4 @@ export class ApiService {
     return of({});
   }
 
-  // private handleError<T>(operation = 'operation', result?: T) {
-  //   return (error: any): Observable<T> => {
-  //     console.error(error);
-  //     return of(result as T);
-  //   }
-  // }
 }

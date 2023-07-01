@@ -20,6 +20,13 @@ export class CreateDoctorComponent {
 
   newDoctor() {
     this.apiService.createDoctor(this.model)
-      .subscribe(doctor => alert(`You have added doctor: ${JSON.stringify(doctor)}`));
+      .subscribe(doctor => {
+        alert(`You have added doctor: ${JSON.stringify(doctor)}`);
+        this.model.name = "";
+        this.model.surname = "";
+        this.model.telephone = "";
+        this.model.email = "";
+        this.model.specialization = "";
+      });
   }
 }

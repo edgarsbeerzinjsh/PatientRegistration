@@ -20,7 +20,14 @@ export class CreatePatientComponent {
 
   newPatient() {
     this.apiService.createPatient(this.model)
-      .subscribe(patient => alert(`You have added patient: ${JSON.stringify(patient)}`));
+      .subscribe(patient => {
+        alert(`You have added patient: ${JSON.stringify(patient)}`);
+        this.model.name = "";
+        this.model.surname = "";
+        this.model.telephone = "";
+        this.model.email = "";
+        this.model.birthDate = new Date();
+      });
   }
 
   getTodayDate(): string {

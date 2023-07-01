@@ -63,12 +63,12 @@
                 <div *ngIf="specialization.errors?.['required']">Specialization is required</div>
             </div>
         </div>
-    <button type="button" 
-        class="create-doctor"
-        [disabled]="!doctorForm.form.valid"
-        (click)="newDoctor(); doctorForm.reset()">
-        Add Doctor
-    </button>
+        <button type="button" 
+            class="create-doctor"
+            [disabled]="!doctorForm.form.valid"
+            (click)="newDoctor(); doctorForm.reset()">
+            Add Doctor
+        </button>
     </form>
 </div>
         

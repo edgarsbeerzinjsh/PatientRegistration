@@ -15,7 +15,17 @@ describe('NavigationComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the NavigationComponent', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render navigation links', () => {
+    const compiled = fixture.nativeElement;
+    const links = compiled.querySelectorAll('a');
+    expect(links.length).toBe(4);
+    expect(links[0].textContent).toContain('Patient List');
+    expect(links[1].textContent).toContain('Doctor List');
+    expect(links[2].textContent).toContain('Add doctor');
+    expect(links[3].textContent).toContain('Add patient');
   });
 });
