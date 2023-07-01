@@ -42,6 +42,4 @@ For future development API controller includes additional methods:
 - ```DeleteAllDoctors()``` - Deletes all doctors from the database.
 - ```DeleteAllPatients()``` - Deletes all patients from the database.
 - ```DeletePatient(PatientDto patientDto)``` - Deletes a patient from the database based on the specified patient object.
-- ```AddPatientToDoctor(PatientDto patientDto, int doctorId)``` - Adds a patient to a doctor in the database..
-
-
+- ```AddPatientToDoctor(PatientDto patientDto, int doctorId)``` - Adds a patient to a doctor in the database.
